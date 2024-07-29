@@ -1,11 +1,9 @@
 name: using deploy action simple
  
 on:
-  push:
-    branches:
-      - 'main'
-  pull_request: {}
+ workflow_call: 
 
+   
 permissions:
   id-token: write
   contents: read
