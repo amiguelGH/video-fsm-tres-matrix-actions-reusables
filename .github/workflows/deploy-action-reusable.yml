@@ -6,4 +6,4 @@ on:
 jobs:
   ci:
     name: run build process
-    uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-accion-simple.yml@main
+    uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
