@@ -2,7 +2,10 @@ name: using deploy action simple
  
 on:
  workflow_call:
-
+  inputs:
+      version_os:
+        required: true
+        type: string
    
 permissions:
   id-token: write
@@ -17,7 +20,7 @@ jobs:
   build_test_release:
     strategy:
       matrix:
-        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[16]' || '[12,14,16,20]') }}
+        node-version: [inputs.version_os] 
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
