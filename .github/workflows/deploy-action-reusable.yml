@@ -1,0 +1,9 @@
+name: Node.js CI - usando deploy action simple
+
+on:
+  workflow_dispatch:
+  push:
+jobs:
+  ci:
+    name: run build process
+    uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-accion-simple.yml@main
