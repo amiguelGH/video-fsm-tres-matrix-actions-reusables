@@ -20,7 +20,7 @@ jobs:
   build_test_release:
     strategy:
       matrix:
-        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[20]' || '[12,14,16,20]') }}
+        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '["${{ inputs.version-os }}"]' || '[12,14,16,20]') }}
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
