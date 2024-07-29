@@ -1,8 +1,7 @@
 name: using deploy action simple
  
 on:
- push:
-
+ workflow_call:
 
    
 permissions:
