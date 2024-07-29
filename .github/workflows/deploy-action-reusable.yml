@@ -1,6 +1,5 @@
 name: Node.js CI - reutilizando accion-simple-compuesta
 
-
 on:
   workflow_dispatch:
 
