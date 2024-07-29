@@ -1,9 +1,13 @@
-name: Node.js CI - usando deploy action simple
-
+name: Node.js CI - reutilizando accion-simple-compuesta
 on:
-  push:
-  
+  workflow_dispatch:
+  push:
 jobs:
-  ci:
-    name: run build process
-    uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
+  test:
+    strategy:
+        matrix:
+         os: [ubuntu-latest]
+    uses: amiguelGH/video-fsm-tres-matrix-actions-reusable/.github/workflows/deploy-action-simple.yml@main
+    with:
+      runner: ${{ matrix.os }}
+
