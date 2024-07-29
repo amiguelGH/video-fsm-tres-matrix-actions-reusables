@@ -2,7 +2,7 @@ name: using deploy action simple
  
 on:
  workflow_call: 
-
+ workflow_dispatch:
    
 permissions:
   id-token: write
