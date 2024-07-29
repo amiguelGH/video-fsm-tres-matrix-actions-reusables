@@ -6,7 +6,7 @@ on:
 
 jobs:
   job1:
-    uses: amiguelGH/video-fsm-tres-matrix-actions-reusable/.github/workflows/deploy-action-simple.yml@main
+    uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
 
   job2:
     runs-on: ubuntu-latest
