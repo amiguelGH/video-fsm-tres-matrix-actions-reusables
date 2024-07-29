@@ -1,14 +1,16 @@
 name: Node.js CI - reutilizando accion-simple-compuesta
 
+
 on:
   workflow_dispatch:
-  push:
+
 jobs:
-  test:
-    strategy:
-        matrix:
-         os: [ubuntu-latest]
+  job1:
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusable/.github/workflows/deploy-action-simple.yml@main
-    with:
-      runner: ${{ matrix.os }}
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
 
