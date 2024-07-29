@@ -2,6 +2,7 @@ name: using deploy action simple
  
 on:
  push:
+
    
 permissions:
   id-token: write
