@@ -7,8 +7,8 @@ jobs:
   job1:
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
-      version: 20
+      version_os: 20
   job2:
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
-      version: 16
+      version_os: 16
