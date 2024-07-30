@@ -12,13 +12,13 @@ permissions:
   contents: read
   pages: write
  
+env:
+  VERSIONS: "['16']"
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  VERSIONS: "['16', '20']"
- 
 jobs:
   prepare-matrix:
     name: Prepare Matrix Output
