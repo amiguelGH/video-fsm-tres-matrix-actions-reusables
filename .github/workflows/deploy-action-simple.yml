@@ -20,7 +20,7 @@ jobs:
   build_test_release:
     strategy:
       matrix:
-        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[20]' || '[12,14,16,20]') }}
+        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[${{ matrix.node-version }}]' || '[12,14,16,20]') }}
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
@@ -29,10 +29,10 @@ jobs:
         run: echo "${{ inputs.version_os }}"
       - name: Output matrix node version 
         run: echo ${{ inputs.version_os }}
-      - name: Output matrix-os uno
-        run: echo "${{ matrix.os }}"
-      - name: Output matrix-os dos 
-        run: echo ${{ matrix.os }}
+      - name: Output matrix.node-version uno
+        run: echo "${{ matrix.node-version }}"
+      - name: Output matrix.node-version dos 
+        run: echo ${{ matrix.node-version }}
         
       - uses: actions/checkout@v4
       - name: use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
