@@ -22,7 +22,7 @@ env:
 jobs:
   prepare-matrix:
     name: Prepare Matrix Output
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     outputs: 
       all_versions: ${{ steps.step1.outputs.matrix }}
     steps: 
