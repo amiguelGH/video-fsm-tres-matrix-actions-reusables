@@ -26,7 +26,7 @@ jobs:
     steps: 
       - name: Create Matrix Variable
         id: step1
-        run: echo "matrix=${{input.versiones}}" >> $GITHUB_OUTPUT
+        run: echo "matrix=${{inputs.versiones}}" >> $GITHUB_OUTPUT
 
 
   salidas-datos:
