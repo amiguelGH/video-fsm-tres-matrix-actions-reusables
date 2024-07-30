@@ -26,9 +26,13 @@ jobs:
  
     steps:
       - name: Output Inputs 
-        run: echo "${{ toJSON(github.event.inputs) }}"
+        run: echo "${{ inputs.version_os }}"
       - name: Output matrix node version 
-        run: echo matrix.node-version
+        run: echo ${{ inputs.version_os }}
+      - name: Output matrix-os uno
+        run: echo "${{ matrix.os }}"
+      - name: Output matrix-os dos 
+        run: echo ${{ matrix.os }}
         
       - uses: actions/checkout@v4
       - name: use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
