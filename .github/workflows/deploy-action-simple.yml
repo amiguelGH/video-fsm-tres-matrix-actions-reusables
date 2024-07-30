@@ -3,7 +3,7 @@ name: using deploy action simple
 on:
  workflow_call:
   inputs:
-      version_os:
+      versiones:
         required: true
         type: string
    
@@ -11,7 +11,9 @@ permissions:
   id-token: write
   contents: read
   pages: write
- 
+
+env:
+  VERSIONS: inputs.versiones
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -26,7 +28,7 @@ jobs:
     steps: 
       - name: Create Matrix Variable
         id: step1
-        run: echo "matrix=${{inputs.version_os}}" >> $GITHUB_OUTPUT
+        run: echo "matrix=${{env.VERSIONS}}" >> $GITHUB_OUTPUT
         
   build_test_release:
     needs: [prepare-matrix]
