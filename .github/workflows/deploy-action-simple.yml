@@ -20,11 +20,16 @@ jobs:
   build_test_release:
     strategy:
       matrix:
-        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[${{"inputs.version_os"}}]' || '[12,14,16,20]') }}
+        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[20]' || '[12,14,16,20]') }}
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
     steps:
+      - name: Output Inputs 
+        run: echo "${{ toJSON(github.event.inputs) }}"
+      - name: Output matrix node version 
+        run: echo matrix.node-version
+        
       - uses: actions/checkout@v4
       - name: use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
         uses: actions/setup-node@v4
