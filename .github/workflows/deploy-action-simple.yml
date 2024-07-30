@@ -18,17 +18,6 @@ concurrency:
 
 jobs:
 
-  prepare-matrix:
-    name: Prepare Matrix Output
-    runs-on: ubuntu-latest
-    outputs: 
-      all_versions: ${{ steps.step1.outputs.matrix }}
-    steps: 
-      - name: Create Matrix Variable
-        id: step1
-        run: echo "matrix=${{inputs.versiones}}" >> $GITHUB_OUTPUT
-
-
   salidas-datos:
      runs-on: ubuntu-latest
      steps:
@@ -42,7 +31,6 @@ jobs:
         run: echo ${{ matrix }}
         
   build_test_release:
-    needs: [prepare-matrix]
     strategy:
       matrix:
         node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[16]' || '[12,14,16]') }}
