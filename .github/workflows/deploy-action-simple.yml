@@ -12,11 +12,6 @@ permissions:
   contents: read
   pages: write
 
-
-
-env:
-  VERSIONS: "20"
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -50,7 +45,7 @@ jobs:
     needs: [prepare-matrix]
     strategy:
       matrix:
-        node-version: ${{ fromJSON(needs.prepare-matrix.outputs.all_versions) }}
+        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[16]' || '[12,14,16]') }}
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
@@ -63,33 +58,4 @@ jobs:
         run: echo "${{ matrix.node-version }}"
       - name: Output matrix.node-version dos 
         run: echo ${{ matrix.node-version }}
-        
-      - uses: actions/checkout@v4
-      - name: use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: install
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
-
-     
-
-        if: github.ref == 'refs/heads/main' && github.repository == 'REPO_OWNER/REPO_NAME'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
-      - name: Upload artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: "github-pages"
-          path: build 
-          
-      - name: Deploy with gh-pages
-        uses: actions/deploy-pages@v4
-        with: 
-          token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: "github-pages"
+       
