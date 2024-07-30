@@ -41,12 +41,12 @@ jobs:
     runs-on: ${{ matrix.os }}
  
     steps:
-      - name: Output Inputs 
-        run: echo "${{ inputs.version_os }}"
-      - name: Output matrix node version 
-        run: echo ${{ inputs.version_os }}
+      - name: Output github.ref 
+        run: echo github.ref
+      - name: Output refs/heads/main 
+        run: echo refs/heads/main
       - name: Output matrix.node-version uno
-        run: echo "${{ matrix.node-version }}"
+        run: echo refs/heads/main
       - name: Output matrix.node-version dos 
         run: echo ${{ matrix.node-version }}
        
