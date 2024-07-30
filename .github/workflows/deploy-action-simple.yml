@@ -12,14 +12,17 @@ permissions:
   contents: read
   pages: write
 
+
+
 env:
-  VERSIONS: inputs.versiones
+  VERSIONS: "20"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+
   prepare-matrix:
     name: Prepare Matrix Output
     runs-on: ubuntu-latest
@@ -29,6 +32,19 @@ jobs:
       - name: Create Matrix Variable
         id: step1
         run: echo "matrix=${{env.VERSIONS}}" >> $GITHUB_OUTPUT
+
+
+  salidas-datos:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Output Inputs 
+        run: echo "${{ inputs.versiones }}"
+      - name: Output matrix versiones 
+        run: echo ${{ inputs.versiones }}
+      - name: Output matrix.versiones uno
+        run: echo "${{ matrix.node-version }}"
+      - name: Output matrix.versiones dos 
+        run: echo ${{ matrix.versiones }}
         
   build_test_release:
     needs: [prepare-matrix]
