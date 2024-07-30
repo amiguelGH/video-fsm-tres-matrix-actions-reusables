@@ -16,6 +16,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+     VERSION: ${{inputs.versiones}}
+
 jobs:
 
   salidas-datos:
@@ -25,15 +28,15 @@ jobs:
         run: echo "${{ inputs.versiones }}"
       - name: Output matrix versiones Ok 
         run: echo ${{ inputs.versiones }}
-      - name: Output matrix.versiones uno
-        run: echo "${{ matrix }}"
-      - name: Output matrix.versiones dos 
-        run: echo ${{ matrix }}
+      - name: Output ${{ env.VERSION }} uno
+        run: echo "${{ env.VERSION }}"
+      - name: Output env.VERSION dos 
+        run: echo env.VERSION 
         
   build_test_release:
     strategy:
       matrix:
-        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[''${{inputs.versiones'}}']' || '[12,14,16]') }}
+        node-version: ${{ fromJSON(github.ref == 'refs/heads/main' && '[''${{inputs.versiones}}'']' || '[12,14,16]') }}
         os: ${{ fromJSON(github.ref == 'refs/heads/main' && '["ubuntu-latest"]' || '["ubuntu-latest", "windows-latest"]') }}
     runs-on: ${{ matrix.os }}
  
