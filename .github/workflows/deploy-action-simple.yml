@@ -26,20 +26,20 @@ jobs:
     steps: 
       - name: Create Matrix Variable
         id: step1
-        run: echo "matrix=${{env.VERSIONS}}" >> $GITHUB_OUTPUT
+        run: echo "matrix=${{input.versiones}}" >> $GITHUB_OUTPUT
 
 
   salidas-datos:
      runs-on: ubuntu-latest
      steps:
-      - name: Output Inputs 
+      - name: Output Inputs Ok
         run: echo "${{ inputs.versiones }}"
-      - name: Output matrix versiones 
+      - name: Output matrix versiones Ok 
         run: echo ${{ inputs.versiones }}
       - name: Output matrix.versiones uno
-        run: echo "${{ matrix.node-version }}"
+        run: echo "${{ matrix }}"
       - name: Output matrix.versiones dos 
-        run: echo ${{ matrix.versiones }}
+        run: echo ${{ matrix }}
         
   build_test_release:
     needs: [prepare-matrix]
