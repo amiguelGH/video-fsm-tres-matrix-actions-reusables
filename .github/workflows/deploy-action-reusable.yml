@@ -7,4 +7,5 @@ jobs:
   job1:
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
-      versiones: "20"
+      version-os: "20"
+      sistema-operativo: "ubuntu-latest"
