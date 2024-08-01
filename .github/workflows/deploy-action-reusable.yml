@@ -1,7 +1,7 @@
 name: Node.js CI - reutilizando accion-simple-compuesta
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   version-matrix:
@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [10, 12, 14, 20]
-        sistema-operativo: ["ubuntu-latest", "windows-latest"]
+        sistema-operativo: [ubuntu-latest, macos-latest, windows-latest]
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
       version-so: ${{ matrix.version }}
