@@ -4,8 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  job1:
+  version-matrix:
+    strategy:
+      # super important if you want to see all results, even if one fails
+      # fail-fast is true by default
+      fail-fast: false
+      matrix:
+        version: [10, 12, 14, 20]
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
-      version-so: "20"
-      sistema-operativo: "ubuntu-latest"
+      version-so: ${{ matrix.version }}
+      sistema-operativo: "ubuntu-latest"    
+    secrets: inherit
