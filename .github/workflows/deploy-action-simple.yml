@@ -19,6 +19,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  nombre-archivo: ${{ matrix.os }}-${{ matrix.version }}
+
 jobs:
 
         
@@ -51,16 +54,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+       
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.os }}-${{ matrix.version }}
+          name: $nombre-archivo
           path: build
 
       - name: Deploy with gh-pages
         uses: actions/deploy-pages@v4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: build/${{ matrix.os }}-${{ matrix.version }}
+          artifact_name: $nombre-archivo
      
