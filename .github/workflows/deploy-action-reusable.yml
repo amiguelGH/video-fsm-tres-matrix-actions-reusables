@@ -14,8 +14,8 @@ jobs:
         sistema-operativo: [github-pages]
       max-parallel: 1
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
-    with:
-      version-so: ${{ matrix.version }}
-      sistema-operativo: "ubuntu-latest"
-      nombre-archivo: ${{ matrix.sistema-operativo }}
+    #with:
+    #  version-so: ${{ matrix.version }}
+    #  sistema-operativo: "ubuntu-latest"
+    #  nombre-archivo: ${{ matrix.sistema-operativo }}
     secrets: inherit
