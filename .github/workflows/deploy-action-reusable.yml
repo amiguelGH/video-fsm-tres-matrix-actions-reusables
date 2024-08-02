@@ -10,7 +10,8 @@ jobs:
       # fail-fast is true by default
       fail-fast: false
       matrix:
-        version: [10, 12, 14, 20]
+        version: [10, 12, 14, 16, 20]
+      max-parallel: 1
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
       version-so: ${{ matrix.version }}
