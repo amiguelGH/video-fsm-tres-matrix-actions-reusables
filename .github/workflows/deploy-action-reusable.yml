@@ -11,9 +11,11 @@ jobs:
       fail-fast: false
       matrix:
         version: [10, 12, 14, 16, 20]
+        sistema-operativo: ["ubuntu-latest"]
       max-parallel: 1
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
       version-so: ${{ matrix.version }}
-      sistema-operativo: "ubuntu-latest"    
+      sistema-operativo: "ubuntu-latest"
+      nombre-archivo: ${{ matrix.sistema-operativo }}-${{ matrix.version }}
     secrets: inherit
