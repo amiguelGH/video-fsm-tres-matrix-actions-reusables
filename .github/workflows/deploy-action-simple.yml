@@ -9,6 +9,9 @@ on:
       sistema-operativo:
         required: true
         type: string  
+      nombre-archivo:
+        required: true
+        type: string    
    
 permissions:
   id-token: write
@@ -18,9 +21,6 @@ permissions:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-env:
-  nombre-archivo: ${{ inputs.version-so }}-${{ inputs.sistema-operativo }}
 
 jobs:
 
@@ -60,12 +60,12 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ nombre-archivo }}
+          name: ${{ inputs.nombre-archivo }}
           path: build
 
       - name: Deploy with gh-pages
         uses: actions/deploy-pages@v4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: ${{ nombre-archivo }}
+          artifact_name: ${{ inputs.nombre-archivo }}
      
