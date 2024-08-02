@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [10, 12, 14, 16, 20]
-        sistema-operativo: ["github-pages"]
+        sistema-operativo: [github-pages]
       max-parallel: 1
     uses: amiguelGH/video-fsm-tres-matrix-actions-reusables/.github/workflows/deploy-action-simple.yml@main
     with:
