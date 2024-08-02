@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  nombre-archivo: ${{ matrix.os }}-${{ matrix.version }}
+  nombre-archivo: $inputs.version-so-$inputs.sistema-operativo
 
 jobs:
 
