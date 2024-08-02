@@ -1,4 +1,4 @@
-name: using deploy action simple
+name: using deploy action simple version 5 reinicio 1
  
 on:
  workflow_call:
@@ -15,6 +15,11 @@ permissions:
   contents: read
   pages: write
 
+
+
+env:
+  VERSIONS: "20"
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -23,23 +28,23 @@ jobs:
 
         
   build_test_release:
-    runs-on: ${{ inputs.sistema-operativo }}
+    runs-on: ${{inputs.sistema-operativo }}
  
     steps:
-      - name: Output "${{ inputs.version_os }}" uno 
-        run: echo "${{ inputs.version_os }}"
-      - name: Output ${{ inputs.version_os }} dos
-        run: echo ${{ inputs.version_os }}
+      - name: Output Inputs 
+        run: echo "${{ inputs.version-so }}"
+      - name: Output inputs version so 
+        run: echo ${{ inputs.version-so }}
       - name: Output inputs.sistema-operativo uno
         run: echo "${{ inputs.sistema-operativo }}"
       - name: Output inputs.sistema-operativo dos 
         run: echo ${{ inputs.sistema-operativo }}
         
       - uses: actions/checkout@v4
-      - name: use Node.js ${{inputs.version-so }} on ${{ inputs.sistema-operativo }}
+      - name: use Node.js ${{ inputs.version-so }} on ${{inputs.sistema-operativo }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{inputs.version-so }}
+          node-version: ${{ inputs.version-so }}
       - name: install
         run: npm install
 
@@ -54,11 +59,11 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           name: "github-pages"
-          path: build
-
+          path: build 
+          
       - name: Deploy with gh-pages
         uses: actions/deploy-pages@v4
         with: 
