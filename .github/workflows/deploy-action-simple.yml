@@ -2,6 +2,7 @@ name: Simple Deploy Action
 
 on:
   workflow_call
+
         
 permissions:
   id-token: write
