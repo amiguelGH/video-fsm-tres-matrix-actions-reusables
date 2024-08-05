@@ -30,10 +30,8 @@ jobs:
           name: "github-pages"
           path: build
 
-      - name: Deploy with gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy with gh-pages new version
+        uses: actions/deploy-pages@v4
         with: 
-          branch: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
           artifact_name: "github-pages"
-          
